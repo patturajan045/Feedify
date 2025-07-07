@@ -1,9 +1,6 @@
 from flask import Flask
-
 from app.config import Config
-
 from models import *
-
 from mongoengine import connect,connection
 
 def create_App():
