@@ -33,7 +33,7 @@ class SourceCategory(Document):
 class Feedback(Document):
     meta = {"collection":"feedback"}
     feedbackName = StringField(required = True)
-    SourceCategory = ReferenceField(SourceCategory,required = True,reverse_delete_rule=CASCADE,null =True)
+    sourceCategory = ReferenceField(SourceCategory,required = True,reverse_delete_rule=CASCADE,null =True)
     feedbackData = DictField(required = True)
     rating = FloatField(required = True, default=0)
     status = StringField(required = True ,default="created", choices=("reviewed", "completed", "on-hold"))
