@@ -1,3 +1,17 @@
-*{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+* {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+.dropdown ul.show {
+    top: 55px !important;
+    right: -10px !important;
+    left: -110px;
+}
+
+.mt-1 {
+    margin-top: 2.25rem !important;
 }
