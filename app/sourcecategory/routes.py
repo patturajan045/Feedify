@@ -9,16 +9,16 @@ def addSourceCategory():
     data = request.get_json()
     try:
         if data["sourceCategoryname"]=="":
-            return jsonify({"status" : "error", "message":"missing Required Field"}), 404
+            return jsonify({"status" : "error", "message":"Missing Required Field"}), 404
         
         source = SourceCategory(
             sourceCategoryname = data["sourceCategoryname"]
         )
         source.save()
-        return jsonify({"status":"success","message":"source added succesfully"}),200
+        return jsonify({"status":"success","message":"Source Added Succesfully"}),200
     except Exception as e:
         return jsonify({
-            f"Error Ocuured while using add new source {e}"
+            f"Error Ocuured While Using Add New Source {e}"
         })
     
 
@@ -99,7 +99,7 @@ def getSourceCategory():
         }), 200
     
     except Exception as e:
-        return jsonify({"status":"error", "message":f"error occured while retrieving all source data {e}"}) 
+        return jsonify({"status":"error", "message":f"Error Occured While Retrieving All Source Data {e}"}) 
     
 
 
@@ -109,7 +109,7 @@ def getSpecificSourrceCategory():
     try:
         source = SourceCategory.objects(id = sourceId).first()
         if not source:
-            return jsonify({"Status" : "Error", "Message" : "SourceCategory not found"}), 404
+            return jsonify({"status" : "error", "message" : "SourceCategory Not Found"}), 404
         
         sourceData = {
             "id" : str(source.id),
@@ -117,10 +117,10 @@ def getSpecificSourrceCategory():
             "addedTime" : source.addedTime if source.addedTime else None,
             "updatedTime" : source.updatedTime if source.updatedTime else None
         }
-        return jsonify({"status" : "Success", "data" : sourceData}), 200
+        return jsonify({"status" : "success", "data" : sourceData}), 200
     
     except Exception as e:
-        return jsonify({"Status" : "Error", "Message" : f"Error occured while retrieving the specific source : {str(e)}"}),500
+        return jsonify({"status" : "error", "message" : f"Error Occured While Retrieving The Specific Source : {str(e)}"}),500
     
 @sourceCategoryBP.delete('/deleteSpecific')
 def deleteSpecificSourceCategory():
@@ -128,13 +128,13 @@ def deleteSpecificSourceCategory():
     try:
         source = SourceCategory.objects(id = sourceId).first()
         if not source:
-            return jsonify({"Status" : "Error", "Message" : "SourceCategory not found"}), 404
+            return jsonify({"status" : "error", "message" : "SourceCategory Not Found"}), 404
         
         source.delete()
-        return jsonify({"Status" : "Success", "Message" : "SourceCategory deleted successfully"}), 200
+        return jsonify({"status" : "success", "message" : "SourceCategory Deleted Successfully"}), 200
     
     except Exception as e:
-        return jsonify({"Status" : "Error", "Message" : f"Error occured while delete the specific source : {str(e)}"}),500
+        return jsonify({"status" : "error", "message" : f"Error Occured While Delete The Specific Source : {str(e)}"}),500
        
 
 @sourceCategoryBP.put('/update')
@@ -144,18 +144,18 @@ def updateSourceCategory():
     try:
         source = SourceCategory.objects(id = sourceId).first()
         if not source:
-            return jsonify({"Status" : "Error", "Message" : "SourceCategory not found"}), 404
+            return jsonify({"status" : "error", "message" : "SourceCategory Not Found"}), 404
         
         if data["sourceCategoryname"] == " ":
-            return jsonify({"Status" : "Error", "Message" : "Missing required field"}), 404
+            return jsonify({"status" : "error", "message" : "Missing Required Field"}), 404
         
         source.sourceCategoryname = data["sourceCategoryname"]
         source.updatedTime = datetime.now()
         source.save()
-        return jsonify({"Status" : "success", "Message" : "SourceCategory updated successfully"}), 200
+        return jsonify({"status" : "success", "message" : "SourceCategory Updated Successfully"}), 200
     
     except Exception as e:
-        return jsonify({"Status" : "error", "Message" : f"Error occured while updating the specific source : {str(e)}"}),500
+        return jsonify({"status" : "error", "message" : f"Error Occured While Updating The Specific Source : {str(e)}"}),500
           
      
              

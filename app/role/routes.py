@@ -11,12 +11,12 @@ def addRole():
     data = request.get_json()
     try:
         if data["name"] == " ":
-            return jsonify({"status": "Error", "message": "Missing Required Field"}),404 
+            return jsonify({"status": "error", "message": "Missing Required Field"}),404 
         role = Role(
             name= data["name"]      
         )
         role.save()
-        return jsonify({"status: Success" , "message:Role added Successfully"}),200 
+        return jsonify({"status": "success" , "message":"Role Added Successfully"}),200 
     except Exception as e:
         return jsonify({f"Error Occured While Using Add Role{e}"})
     
@@ -29,16 +29,16 @@ def getSpecificRole():
     try:
         role = Role.objects(id=roleId).first()
         if not role:
-            return jsonify({"status":"Error" , "message": "Role Not Found"}),404
+            return jsonify({"status":"error" , "message": "Role Not Found"}),404
         roleData = {
             "id":str(role.id),
             "name": role.name,
             "addedTime":role.addedTime if role.addedTime else None,
             "updatedTime":role.updatedTime if role.updatedTime else None
         }  
-        return jsonify({"status":"Success","data": roleData}),200
+        return jsonify({"status":"success","data": roleData}),200
     except Exception as e:
-        return jsonify({"status":"Error","message":f"Error Occured While Retrieving The Specific Role:{str(e)}"}),500
+        return jsonify({"status":"error","message":f"Error Occured While Retrieving The Specific Role:{str(e)}"}),500
     
 #delete  
    
@@ -48,11 +48,11 @@ def deleteSpecificRole():
     try:
         role=Role.objects(id=roleId).first()   
         if not role:
-            return jsonify({"status":"error","message":"Role not found"}),404
+            return jsonify({"status":"error","message":"Role Not Found"}),404
         role.delete()
-        return jsonify({"status":"Success","message":"role deleted successfully"}),200
+        return jsonify({"status":"success","message":"Role Deleted Successfully"}),200
     except Exception as e:
-        return jsonify({"status":"error","message":f"Error occured while retriving the specific role:{str(e)}"}),500
+        return jsonify({"status":"error","message":f"Error Occured While Retriving The Specific Role:{str(e)}"}),500
     
 #update
 
@@ -63,15 +63,15 @@ def updateRole():
     try:
         role=Role.objects(id=roleId).first()  
         if not role:
-            return jsonify({"status":"error","message":"Role not found"}),404
+            return jsonify({"status":"error","message":"Role Not Found"}),404
         if data["name"]=="":
-          return jsonify({"status":"Success","message":"Missing Required field"}),404
+          return jsonify({"status":"success","message":"Missing Required Field"}),404
         role.name =data["name"]
         role.updatedTime =datetime.now()
         role.save()
-        return jsonify({"status":"success","message":"role updated successfully"}),200
+        return jsonify({"status":"success","message":"Role Updated Successfully"}),200
     except Exception as e:
-        return jsonify({"status":"error","message":f"Error occured while retriving the specific role:{str(e)}"}),500
+        return jsonify({"status":"error","message":f"Error Occured While Retriving The Specific Role:{str(e)}"}),500
     
     
     
@@ -157,7 +157,7 @@ def getAllRole():
     except Exception as e:
         return jsonify({
             "status": "error",
-            "message": f"Error occurred while retrieving all role data: {str(e)}"}),500      
+            "message": f"Error Occurred While Retrieving All Role Data: {str(e)}"}),500      
      
    
     

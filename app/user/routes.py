@@ -12,12 +12,12 @@ def addUser():
     data = request.get_json()
     try:
         if data["name"] == " " or data["email"] == " " or data["password"] == " " or data["phone"] == " " or data["role"] == " " :
-            return jsonify({"status" : "Error", "message" : "Missing Required Field"}), 404
+            return jsonify({"status" : "error", "message" : "Missing Required Field"}), 404
     
         role = data["role"]
         roleId = Role.objects(id = role).first()
         if not roleId:
-            return jsonify({"status" : "Error", "message" : "Invalid Role Id"})
+            return jsonify({"status" : "error", "message" : "Invalid Role Id"})
         
         user = User(
             name = data["name"],
@@ -27,10 +27,10 @@ def addUser():
             role = roleId
         )
         user.save()
-        return jsonify({"status" : "Success", "message" : "User added successfully"}), 200
+        return jsonify({"status" : "success", "message" : "User Added Successfully"}), 200
     
     except Exception as e:
-        return jsonify({f"Error occured while using add User {e}"})
+        return jsonify({f"Error Occured While Using Add User {e}"})
                
         
 # Retrieve Specific data [GET]
@@ -41,7 +41,7 @@ def getSpecificUser():
     try:
         user = User.objects(id = userId).first()
         if not user:
-            return jsonify({"status" : "Error", "message" : "User not found"}), 404
+            return jsonify({"status" : "error", "message" : "User Not Found"}), 404
         
         userData = {
             "id" : str(user.id),
@@ -52,10 +52,10 @@ def getSpecificUser():
             "addedTime" : user.addedTime if user.addedTime else None,
             "updatedTime" : user.updatedTime if user.updatedTime else None
         }
-        return jsonify({"status" : "Success", "data" : userData}), 200
+        return jsonify({"status" : "success", "data" : userData}), 200
     
     except Exception as e:
-        return jsonify({"status" : "Error", "message" : f"Error occured while retrieving the specific user : {str(e)}"}), 500  
+        return jsonify({"status" : "error", "message" : f"Error Occured While Retrieving The Specific User : {str(e)}"}), 500  
     
     
 # Delete Specific data [DELETE]
@@ -66,13 +66,13 @@ def deleteSpecificUser():
     try:
         user = User.objects(id = userId).first()
         if not user:
-            return jsonify({"status" : "Error", "message" : "User not found"}), 404
+            return jsonify({"status" : "error", "message" : "User Not Found"}), 404
         
         user.delete()
-        return jsonify({"status" : "Success", "message" : "User deleted successfully"}), 200
+        return jsonify({"status" : "success", "message" : "User Deleted Successfully"}), 200
     
     except Exception as e:
-        return jsonify({"status" : "Error", "message" : f"Error occured while delete the specific user : {str(e)}"}), 500 
+        return jsonify({"status" : "error", "message" : f"Error Occured While Delete The Specific User : {str(e)}"}), 500 
     
 
 # Update data [PUT]
@@ -84,10 +84,10 @@ def updateUser():
     try:
         user = User.objects(id = userId).first()
         if not user:
-            return jsonify({"status" : "Error", "message" : "User not found"}), 404
+            return jsonify({"status" : "error", "message" : "User Not Found"}), 404
         
         if data["name"] == " " or data["email"] == " " or data["password"] == " " or data["phone"] == " " :
-            return jsonify({"status" : "Error", "message" : "Missing required field"}), 404
+            return jsonify({"status" : "error", "message" : "Missing Required Field"}), 404
         
         user.name = data["name"]
         user.email = data["email"]
@@ -96,10 +96,10 @@ def updateUser():
         role = userId
         user.updatedTime = datetime.now()
         user.save()
-        return jsonify({"status" : "Success", "message" : "User updated successfully"}), 200
+        return jsonify({"status" : "success", "message" : "User Updated Successfully"}), 200
     
     except Exception as e:
-        return jsonify({"status" : "Error", "message" : f"Error occured while updating the specific user : {str(e)}"}), 500 
+        return jsonify({"status" : "error", "message" : f"Error Occured While Updating The Specific User : {str(e)}"}), 500 
        
     
 # Get all the data [getAll]
@@ -190,5 +190,5 @@ def getAllUser():
     except Exception as e:
         return jsonify({
             "status": "error",
-            "message": f"Error occurred while retrieving all user data: {str(e)}"
+            "message": f"Error Occurred While Retrieving All User Data: {str(e)}"
         }), 500

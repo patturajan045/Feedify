@@ -9,13 +9,13 @@ def addFeedback():
     data = request.get_json()
     try:
         if data["feedbackName"]=="" or data["feedbackData"]=="" or data["rating"]=="" or data["status"]=="" or data["SourceCategory"]:
-            return jsonify({"status" : "error", "message":"missing Required Field"}), 404
+            return jsonify({"status" : "error", "message":"Missing Required Field"}), 404
         
         sourcecategory=data=["sourcecategory"]
         sourceId=SourceCategory.objects(id=sourcecategory).first()
         
         if not sourceId:
-            return jsonify({"status":"error" , "message":" invalid sourceId"})
+            return jsonify({"status":"error" , "message":" Invalid SourceId"})
         
         feedback= Feedback(
             feedbackName = data["feedback feedbackName"],
@@ -25,10 +25,10 @@ def addFeedback():
             status=data["status"]
         )
         feedback.save()
-        return jsonify({"status":"success","message":"Feedback added succesfully"}),200
+        return jsonify({"status":"success","message":"Feedback Added Successfully"}),200
     except Exception as e:
         return jsonify({
-            f"Error Ocuured while using add new Feedback {e}"
+            f"Error Ocuured While Using Add New Feedback {e}"
         })
     
 
@@ -117,7 +117,7 @@ def getFeedback():
         }), 200
     
     except Exception as e:
-        return jsonify({"status":"error", "message":f"error occured while retrieving all feedback data {e}"}) 
+        return jsonify({"status":"error", "message":f"Error Occured While Retrieving All Feedback Data {e}"}) 
     
 
 @feedbackBp.get('/getSpecific')
@@ -126,7 +126,7 @@ def getSpecificfeedback():
     try:
         feedback = Feedback.objects(id = feedbackId).first()
         if not feedback:
-            return jsonify({"Status" : "Error", "Message" : "feedback not found"}), 404
+            return jsonify({"Status" : "error", "message" : "Feedback Not Found"}), 404
         
         feedbackData = {
             "id" : str(feedback.id),
@@ -138,10 +138,10 @@ def getSpecificfeedback():
             "addedTime" : feedback.addedTime if feedback.addedTime else None,
             "updatedTime" : feedback.updatedTime if feedback.updatedTime else None
         }
-        return jsonify({"status" : "Success", "data" : feedbackData}), 200
+        return jsonify({"status" : "success", "data" : feedbackData}), 200
     
     except Exception as e:
-        return jsonify({"Status" : "Error", "Message" : f"Error occured while retrieving the specific feedback : {str(e)}"}),500
+        return jsonify({"status" : "error", "message" : f"Error Occured While Retrieving The Specific Feedback : {str(e)}"}),500
     
 
 @feedbackBp.delete('/deleteSpecific')
@@ -150,13 +150,13 @@ def deleteSpecificfeedback():
     try:
         feedback = feedback.objects(id = feedbackId).first()
         if not feedback:
-            return jsonify({"Status" : "Error", "Message" : "feedback not found"}), 404
+            return jsonify({"status" : "error", "message" : "Feedback Not Found"}), 404
         
         feedback.delete()
-        return jsonify({"Status" : "Success", "Message" : "feedback deleted successfully"}), 200
+        return jsonify({"status" : "success", "message" : "Feedback Deleted Successfully"}), 200
     
     except Exception as e:
-        return jsonify({"Status" : "Error", "Message" : f"Error occured while delete the specific feedback : {str(e)}"}),500
+        return jsonify({"status" : "error", "message" : f"Error Occured While Delete The Specific Feedback : {str(e)}"}),500
        
 @feedbackBp.put('/update')
 def updatefeedback():
@@ -165,7 +165,7 @@ def updatefeedback():
     try:
         feedback = feedback.objects(id = feedbackId).first()
         if not feedback:
-            return jsonify({"Status" : "Error", "Message" : "feedback not found"}), 404
+            return jsonify({"status" : "error", "message" : "Feedback Not Found"}), 404
         
         if data["feedbackName"]=="" or data["feedbackData"]=="" or data["rating"]=="" or data["status"]=="" or data["SourceCategory"]:
             return jsonify({"status" : "error", "message":"missing Required Field"}), 404
@@ -174,7 +174,7 @@ def updatefeedback():
         sourceId=SourceCategory.objects(id=sourcecategory).first()
         
         if not sourceId:
-            return jsonify({"status":"error" , "message":" invalid sourceId"})
+            return jsonify({"status":"error" , "message":" Invalid SourceId"})
         
         feedback.feedbackName = data[" feedbackName"]
         feedback.feedbackData =data["feedbackData"]
@@ -183,10 +183,10 @@ def updatefeedback():
         feedback.sourceCategory = sourceId
         feedback.updatedTime = datetime.now()
         feedback.save()
-        return jsonify({"Status" : "success", "Message" : "feedback updated successfully"}), 200
+        return jsonify({"status" : "success", "message" : "Feedback Updated Successfully"}), 200
     
     except Exception as e:
-        return jsonify({"Status" : "error", "Message" : f"Error occured while updating the specific feedback : {str(e)}"}),500
+        return jsonify({"status" : "error", "message" : f"Error occured while updating the specific feedback : {str(e)}"}),500
           
      
              
