@@ -38,5 +38,26 @@ def create_App():
     app.register_blueprint(formBp, url_prefix = '/form') 
    
 
+    from app.role import roleBp
+    app.register_blueprint(roleBp,url_prefix ='/role')
+
+    from app.user import userBp
+    app.register_blueprint(userBp,url_prefix ='/user') 
+
+    from app.sourcecategory import sourceCategoryBP
+    app.register_blueprint(sourceCategoryBP,url_prefix ='/sourcecategory') 
+
+
+    from app.feedback import feedbackBp
+    app.register_blueprint(feedbackBp,url_prefix ='/feedback') 
+    
+
+    from app.auth import authBp
+    app.register_blueprint(authBp,url_prefix = '/auth')
+    
+    from app.main import main_bp
+    app.register_blueprint(main_bp)
+   
+
 
     return app  
