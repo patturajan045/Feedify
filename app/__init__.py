@@ -58,6 +58,7 @@ def create_App():
     from app.main import main_bp
     app.register_blueprint(main_bp)
    
-
+    from app.dashboard import dashboard_bp
+    app.register_blueprint(dashboard_bp)
 
     return app  
