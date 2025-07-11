@@ -7,7 +7,7 @@ class Role(Document):
     meta = {"collection" : "role"}   
       
     id = StringField(primary_key = True, default = lambda : str(uuid4()))
-    name = StringField(required = True)
+    name = StringField(required = True, unique=True)
     addedTime = DateTimeField(default = datetime.now())
     updatedTime = DateTimeField()
     
@@ -19,7 +19,7 @@ class User(Document):
     name = StringField(required = True)
     email = EmailField(required = True, unique = True)
     phone = StringField(required = True)
-    role = ReferenceField(Role, required = True, required = True, reverse_delete_rule = CASCADE, null = True)
+    role = ReferenceField(Role, required = True, reverse_delete_rule = CASCADE, null = True)
     password = StringField(required = True)
     addedTime = DateTimeField(default = datetime.now())
     updatedTime = DateTimeField()

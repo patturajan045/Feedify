@@ -7,22 +7,23 @@ from . import authBp
 @authBp.post('/register')
 def register():
     data = request.get_json()
+    print(data)
     try:
-        if data["name"] == " " or data["email"] == " " or data["password"] == " " or data["phone"] == " ":
+        if data["name"] == "" or data["email"] == "" or data["password"] == "" or data["phone"] == "":
             return jsonify({"status" : "error", "message" : "Missing Required Field"}), 404
         
-        role = Role.objects(name = "user").first()
+        role = Role.objects(name="user").first()
         if not role:
             return jsonify({"status":"error", "message":" Invalid Role"})
         
+
         user = User(
             name = data["name"],
             email = data["email"],
             password = data["password"],
-            phone = data["phone"]
-        ) 
-        user.save()
-
+            phone = data["phone"],
+            role=role
+        ).save()
 
         session["user"] = {
             "id": user.id,
@@ -40,7 +41,7 @@ def register():
 def login():
     data = request.get_json()
     try:
-        if data["email"] == " " or data["password"] == " " :
+        if data["email"] == "" or data["password"] == "" :
             return jsonify({"status" : "error", "message" : "Missing Required Field"}), 404
         
         user = User.objects(email = data["email"]).first()
@@ -63,10 +64,10 @@ def login():
         return jsonify({f"Error Occured While Using Login {e}"})
         
         
-@authBp.post('/logout')
+@authBp.get('/logout')
 def logout():
     if session["user"]:
         session.clear()
-        redirect('/login')
+        return redirect('/login')
     else:
         return jsonify({"status": "error", "message": "You are not logged in. Please login to continue."})

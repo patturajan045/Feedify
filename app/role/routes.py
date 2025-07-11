@@ -10,7 +10,7 @@ from mongoengine.queryset.visitor import Q
 def addRole():
     data = request.get_json()
     try:
-        if data["name"] == " ":
+        if data["name"] == "":
             return jsonify({"status": "error", "message": "Missing Required Field"}),404 
         role = Role(
             name= data["name"]      
@@ -18,12 +18,12 @@ def addRole():
         role.save()
         return jsonify({"status": "success" , "message":"Role Added Successfully"}),200 
     except Exception as e:
-        return jsonify({f"Error Occured While Using Add Role{e}"})
+        return jsonify({f"Error Occured While Using Add Role {e}"})
     
     
 #GET
 
-@roleBp.post('/getSpecific')
+@roleBp.get('/getSpecific')
 def getSpecificRole():
     roleId = request.args.get("id")
     try:

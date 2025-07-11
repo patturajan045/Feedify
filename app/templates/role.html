@@ -16,6 +16,9 @@
 
     <link rel="stylesheet" href="../static/css/style.css">
 
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
+
 </head>
 
 <body class="h-100">
@@ -43,9 +46,9 @@
 
                 </button>
                 <ul class="dropdown dropdown-menu">
-                    <li><a class="dropdown-item" href="#">User Name</a></li>
-                    <li><a class="dropdown-item" href="#">User Email</a></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" href="#">{{name}}</a></li>
+                    <li><a class="dropdown-item" href="#">{{email}}</a></li>
+                    <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
                 </ul>
             </div>
     </nav>
@@ -88,7 +91,7 @@
                     </nav>
 
                     <div class="card p-2 mt-5">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="roleTable">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -111,25 +114,24 @@
             style="display: none;">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form id="addUserForm">
+                    <form id="roleForm">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addUserModalLabel">Fill The Form To Add New Role</h5>
+                            <h5 class="modal-title" id="addUserModalLabel">Role</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Role Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Role Name"
-                                    required=" " name="RoleName">
+                                <input type="text" class="form-control" id="roleName" placeholder="Enter Role Name"
+                                    required=" " name="name">
                             </div>
 
                         </div>
 
                         <div class="modal-footer">
-
-                            <button type="submit" class="btn" style="background-color: #FFF2AF !important;"> Click To
-                                Add Role
+                            <input type="hidden" id="roleId">
+                            <button type="submit" class="btn" style="background-color: #FFF2AF !important;">Save
                             </button>
                         </div>
                     </form>
@@ -138,10 +140,20 @@
         </div>
     </div>
 
+
     <!-- Bootstrap JS Bundle CDN (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+
+
+    <script src="../static/js/role.js"></script>
+
+    
 </body>
 
 </html>

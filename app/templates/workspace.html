@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkSpace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+    <!--Inputs-->
+    <div class="container-fluid text-center p-0 m-0">
+        <div class="row align-items-start">
+            <div class="col-3">
+                <h3 style="background-color: #493D9E; color:white; height: 50px; margin: 0;">Inputs</h3>
+                <div style="background-color: #B2A5FF">
+                    <div class="row inputControls py-5">
+                        <div class="col inputIcons" style="font-weight: 1000;">
+                            <a><img src="../static/img/press-button.png"> Button </a>
+                            <a><img src="../static/img/note.png"> Text</a>
+                            <a><img src="../static/img/email.png"> Email </a>
+                            <a><img src="../static/img/image-gallery.png"> Image</a>
+                            <a><img src="../static/img/link.png">Url</a>
+                            <a><img src="../static/img/check.png">Checkbox</a>
+                            <a><img src="../static/img/clock.png">Time</a>
+                        </div>
+                        <div class="col inputIcons" style="font-weight: 1000;">
+                            <a><img src="../static/img/calendar.png">Calender</a>
+                            <a><img src="../static/img/number-blocks.png">Number</a>
+                            <a><img src="../static/img/hidden.png">Password</a>
+                            <a><img src="../static/img/radio-buttons.png">Radio</a>
+                            <a><img src="../static/img/text-area.png">Text-Area</a>
+                            <a><img src="../static/img/preview.png">Search</a>
+                            <a><img src="../static/img/range.png">Range</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Workspace-->
+            <div class="col-6">
+                <h3 style="background-color: #493D9E; color:white; height: 50px;"> WorkSpace</h3>
+                <div>
+
+
+                </div>
+            </div>
+            <!--properties-->
+            <div class="col-3">
+                <div class="properties" style="background-color: #493D9E; color:white !important">
+                    <h3>Properties </h3>
+                    <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#addUserModal"
+                        style="background-color: #FFF2AF !important;">SAVE
+                    </button>
+                </div>
+                <div style="background-color: #B2A5FF;">
+                    <div class="Thirdcol py-5">
+                        <div class="form-floating mb-3">
+                            <button type="button" class="btn btn-outline-dark" id="Button">Button</button>
+                            <button type="submit" class="btn btn-outline-dark" id="SubmitButton">Submit Button</button>
+                            <button type="reset" class="btn btn-outline-dark" id="ResetButton">Reset Button</button>
+                        </div>
+                        <div class="form-floating mb-3 pt-5">
+                            <input type="Name" class="form-control" id="Name" placeholder="name">
+                            <label for="floatingInput">Name</label>
+                        </div>
+                        <div class="form-floating mb-3 pt-5">
+                            <input type="number" class="form-control" id="Password" placeholder="Number">
+                            <label for="floatingNumber">Number</label>
+                        </div>
+                        <div class="form-floating mb-3 pt-5">
+                            <textarea class="form-control" placeholder="Leave a comment here"
+                                id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Text-Area</label>
+                        </div>
+                        <div class="form-floating mb-3 pt-5">
+                            <input type="email" class="form-control" id="Email" placeholder="Email">
+                            <label for="floatingEmail">Email</label>
+                        </div>
+                        <div class="form-floating mb-3 pt-5">
+                            <input type="url" class="form-control" id="url" placeholder="Url">
+                            <label for="floatingUrl">Url</label>
+                        </div>
+                        <div class="form-floating mb-3  pt-5">
+                            <input type="password" class="form-control" id="Password" name="password"  placeholder="Password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <div class="form-floating mb-3  pt-5">
+                            <input type="search" class="form-control" id="Search" placeholder="Search">
+                            <label for="floatingSearch">Search</label>
+                        </div>
+                        <div class="form-floating mb-3  pt-5">
+                            <label for="floatingfile">ChooseImageFile</label>
+                            <input type="file" class="form-control" id="File" placeholder="File">
+                        </div>
+                        <div class="form-floating mb-3  pt-5">
+                            <label for="floatingDate">ChooseDate</label>
+                            <input type="date" class="form-control" id="Date" placeholder="Date">
+                            <input type="submit" value="submit" style="margin-top: 5px;">
+                        </div>
+                        <div class="form-floating mb-3  pt-5">
+                            <label for="floatingMonth">ChooseMonth</label>
+                            <input type="month" class="form-control" id="Month" placeholder="Month">
+                            <input type="submit" value="submit" style="margin-top: 5px;">
+                        </div>
+                        <div class="form-floating mb-3  pt-5">
+                            <label for="floatingtime">ChooseTime</label>
+                            <input type="time" class="form-control" id="time" placeholder="time">
+                            <input type="submit" value="submit" style="margin-top: 5px;">
+                        </div>
+                        <div class="btn-group mb-3 pt-5" role="group" aria-label="Basic checkbox toggle button group">
+                            <label class="form-check-label me-2" for="btncheck1">Required</label>
+                            <input type="checkbox" class="form-check-input" id="btncheck1" autocomplete="off">
+                        </div>
+                        <div class="mb-3 pt-5">
+
+                            <label for="Radio">Radio Buttons </label>
+                            <input type="radio" class="" id="radio" name="0">
+                            <input type="radio" class="" id="radio" name="0">
+                            <input type="radio" class="" id="radio" name="0">
+                            <input type="radio" class="" id="radio" name="0">
+
+                        </div>
+                        <div class="mb-3  pt-5">
+                            <input type="range" class="form-control" id="Range" placeholder="Range">
+                            <label for="floatingRange">Range</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-const form = document.getElementById('loginForm')
+const form = document.getElementById('registerForm')
 
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
@@ -6,8 +6,7 @@ form.addEventListener('submit', (e)=>{
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
 
-
-    fetch('/auth/login', {
+    fetch('/auth/register', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'

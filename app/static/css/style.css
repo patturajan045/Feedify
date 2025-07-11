@@ -3,7 +3,7 @@
 }
 
 html {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .dropdown ul.show {
@@ -14,4 +14,48 @@ html {
 
 .mt-1 {
     margin-top: 2.25rem !important;
+}
+
+.input1 {
+    background-color: #B2A5FF;
+}
+
+.inputControls {
+    overflow-y: auto;
+    height: 95vh;
+}
+
+
+.inputControls .inputIcons {
+    display: grid;
+    justify-content: center;
+    row-gap: 40px;
+}
+
+.inputControls .inputIcons a {
+    display: grid;
+    justify-content: center;
+    font-size: large;
+    
+}
+
+.inputControls .inputIcons img {
+    width: 80px;
+    padding-top: 10px;
+
+}   
+
+.properties {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+    padding: 5px;
+}
+
+.Thirdcol {
+    padding: 10px;
+    overflow-y: auto;
+    height: 95vh;
+    font-weight: 1000 !important;
+    font-size: large;
 }
