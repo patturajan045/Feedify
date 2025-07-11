@@ -53,6 +53,6 @@ class Form(Document):
     name = StringField(required = True)
     description = StringField(required = True)
     sourceCategory = ReferenceField(SourceCategory, required = True, reverse_delete_rule = CASCADE, null = True)
-    inputs = DictField(required = True)
+    inputs = DictField()
     addedTime = DateTimeField(default = datetime.now())
     updatedTime = DateTimeField()

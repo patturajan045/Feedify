@@ -11,18 +11,17 @@ from mongoengine.queryset.visitor import Q
 def addForm():
     data = request.get_json()
     try:
-        if data["name"] == " " or data["description"] == " " or data["inputs"] == " " or data["sourceCategory"] == " " :
+        if data["name"] == "" or data["description"] == "" or data["sourceCategory"] == "" :
             return jsonify({"status" : "error", "message" : "Missing Required Field"}), 404
     
         sourceCategory = data["sourceCategory"]
-        sourceCategoryId = SourceCategory.objects(id = sourceCategory).first()
+        sourceCategoryId = SourceCategory.objects(id=sourceCategory).first()
         if not sourceCategoryId:
             return jsonify({"status" : "error", "message" : "Invalid sourceCategory Id"})
         
         form = Form(
             name = data["name"],
             description = data["description"],
-            inputs = data["inputs"],
             sourceCategory = sourceCategoryId
         )
         form.save()
@@ -175,7 +174,8 @@ def getAllForm():
             "id": str(form.id),
             "name": form.name,
             "description": form.description,
-            "inputs": form.inputs,
+            "inputs": form.inputs if form.inputs else None,
+            "sourceCategory":form.sourceCategory.sourceCategoryname,
             "addedTime": form.addedTime,
             "updatedTime": form.updatedTime
         } for form in form_query]

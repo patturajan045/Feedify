@@ -156,9 +156,19 @@ def updateSourceCategory():
     
     except Exception as e:
         return jsonify({"status" : "error", "message" : f"Error Occured While Updating The Specific Source : {str(e)}"}),500
-          
-     
-             
-                  
-            
 
+
+@sourceCategoryBP.get('/allNames')
+def allSourceCategoryNames():
+    try:
+        allSource = SourceCategory.objects()
+        
+        sourceData = [{
+          "id": str(source.id),
+          "sourceCategoryname": source.sourceCategoryname,
+        } for source in allSource]
+
+        return jsonify({"status" : "success", "data" : sourceData}), 200
+    
+    except Exception as e:
+        return jsonify({"status" : "error", "message" : f"Error Occured While Updating The Specific Source : {str(e)}"}),500
