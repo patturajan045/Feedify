@@ -1,7 +1,7 @@
 
 /* ========================== Add/Update Role ========================== */
 
-const form = document.getElementById('roleForm')
+const form = document.getElementById('addSourceCategoryForm')
 
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
@@ -9,10 +9,10 @@ form.addEventListener('submit', (e)=>{
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
 
-    let id = document.getElementById('roleId').value
+    let id = document.getElementById('sourcecategoryId').value
 
     if (id) {
-        fetch(`/role/update?id=${id}`, {
+        fetch(`/sourcecategory/update?id=${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ form.addEventListener('submit', (e)=>{
             alert(err)
         })
     }else{
-        fetch('/role/new', {
+        fetch('/sourcecategory/new', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -61,11 +61,11 @@ form.addEventListener('submit', (e)=>{
 
 
 $(document).ready(function () {
-    let table = $('#roleTable').DataTable({
+    let table = $('#sourcecategoryTable').DataTable({
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "/role/getAll",
+            "url": "/sourcecategory/getAll",
             "type": "GET",
             "dataSrc": 'data',
             "error": function (xhr, error, thrown) {
@@ -73,7 +73,7 @@ $(document).ready(function () {
             }
         },
         "columns": [
-            { "data": "name", "defaultContent": "N/A" },
+            { "data": "sourceCategoryname", "defaultContent": "N/A" },
             { "data": "addedTime", "defaultContent": "N/A" },
             { "data": "updatedTime", "defaultContent": "N/A" },
             { 
@@ -85,7 +85,7 @@ $(document).ready(function () {
                               <i class="bi bi-three-dots-vertical"></i>
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item edit-btn" href="javascript:void(0);" data-id="${data}"  data-bs-toggle="modal" data-bs-target="#addSourcecategoryModal"><i class="bi bi-pencil-square me-1"></i>
+                              <a class="dropdown-item edit-btn" href="javascript:void(0);" data-id="${data}"  data-bs-toggle="modal" data-bs-target="#addUserModal"><i class="bi bi-pencil-square me-1"></i>
                                 Edit</a>
                               <a class="dropdown-item delete-btn" href="javascript:void(0);" data-id="${data}"><i class="bi bi-trash-fill me-1"></i>
                                 Delete</a>
@@ -103,11 +103,11 @@ $(document).ready(function () {
     });
   
 
-    $('#roleTable tbody').on('click', '.delete-btn', function() {
+    $('#sourcecategoryTable tbody').on('click', '.delete-btn', function() {
         let id = $(this).data('id');
         if(confirm('Are you sure you want to delete this role?')){
             $.ajax({
-                url: `/role/deleteSpecific?id=${id}`,
+                url: `/sourcecategory/deleteSpecific?id=${id}`,
                 type: 'DELETE',
                 success: function (response) {
                     if (response.status == "success") {
@@ -132,14 +132,14 @@ document.querySelector('table tbody').addEventListener('click', (e)=>{
         let id = e.target.dataset.id
 
 
-        fetch(`/role/getSpecific?id=${id}`)
+        fetch(`/sourcecategory/getSpecific?id=${id}`)
         .then(res => res.json())
         .then(response =>{
             if (response.status == "success") {
                 const data = response.data
 
-                document.getElementById('roleName').value = data.name
-                document.getElementById('roleId').value = data.id
+                document.getElementById('sourceName').value = data.sourceCategoryname
+                document.getElementById('sourcecategoryId').value = data.id
             }
             else{
                 throw new Error(data.message);
@@ -152,4 +152,4 @@ document.querySelector('table tbody').addEventListener('click', (e)=>{
 })
 
 
-document.getElementById('addUserModal').addEventListener('hidden.bs.modal', ()=>{location.reload()})
+document.getElementById('addSourcecategoryModal').addEventListener('hidden.bs.modal', ()=>{location.reload()})

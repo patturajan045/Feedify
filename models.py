@@ -28,6 +28,7 @@ class User(Document):
 class SourceCategory(Document):
     meta = {"collection" : "sourcecategory"}
     
+    id = StringField(primary_key = True, default = lambda : str(uuid4()))
     sourceCategoryname = StringField(required = True)
     addedTime = DateTimeField(default = datetime.now())
     updatedTime = DateTimeField()
@@ -36,6 +37,7 @@ class SourceCategory(Document):
 class Feedback(Document):
     meta = {"collection" : "feedback"}
     
+    id = StringField(primary_key = True, default = lambda : str(uuid4()))
     feedbackName = StringField(required = True)
     sourceCategory = ReferenceField(SourceCategory, required = True, reverse_delete_rule = CASCADE, null = True)
     feedbackData = DictField(required = True)
@@ -47,6 +49,7 @@ class Feedback(Document):
 class Form(Document):
     meta = {"collection" : "form"}
     
+    id = StringField(primary_key = True, default = lambda : str(uuid4()))
     name = StringField(required = True)
     description = StringField(required = True)
     sourceCategory = ReferenceField(SourceCategory, required = True, reverse_delete_rule = CASCADE, null = True)
